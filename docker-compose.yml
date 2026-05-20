@@ -1,0 +1,46 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ecommerce_api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      MONGODB_URI: mongodb://ecommerce_mongodb:27017/ecommerce
+      REDIS_URL: redis://ecommerce_redis:6379
+      RABBITMQ_URL: amqp://guest:guest@ecommerce_rabbitmq:5672
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+      - ./tsconfig.json:/app/tsconfig.json
+    depends_on:
+      - mongodb
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce_network
+
+  mongodb:
+    extends:
+      file: docker-compose.infra.yml
+      service: mongodb
+
+  redis:
+    extends:
+      file: docker-compose.infra.yml
+      service: redis
+
+  rabbitmq:
+    extends:
+      file: docker-compose.infra.yml
+      service: rabbitmq
+
+networks:
+  ecommerce_network:
+    driver: bridge
+    name: ecommerce_network

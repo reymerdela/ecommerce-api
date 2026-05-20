@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+ENV NODE_ENV=development
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY tsconfig.json ./
+
+EXPOSE 3000
+
+CMD ["npx", "tsx", "watch", "src/server.ts"]
