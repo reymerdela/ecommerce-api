@@ -1,0 +1,73 @@
+{
+  "name": "ecommerce-api",
+  "version": "0.0.1",
+  "description": "REST API for e-commerce — Node.js, Express, TypeScript, MongoDB, Redis, RabbitMQ, Stripe",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "biome check src/",
+    "lint:fix": "biome check --write src/",
+    "format": "biome format --write src/",
+    "seed": "tsx scripts/seed.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reymerdela/ecommerce-api.git"
+  },
+  "keywords": [],
+  "author": "Reymer I. De La Cruz M.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/reymerdela/ecommerce-api/issues"
+  },
+  "homepage": "https://github.com/reymerdela/ecommerce-api#readme",
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.10.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.2",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^2.2.1",
+    "stripe": "^22.1.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "@types/amqplib": "^0.10.8",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/hpp": "^0.2.7",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^25.9.0",
+    "commitlint": "^21.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "biome check --write",
+      "biome format --write"
+    ]
+  }
+}
